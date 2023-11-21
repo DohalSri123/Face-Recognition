@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Attendance Tracker Sheet</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+            }
+            form {
+                margin-top: 50px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 1px solid #ddd;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                background-color: #fff;
+                width: 20%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            label {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            input[type="date"] {
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                margin-bottom: 20px;
+                font-size: 18px;
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+            button[type="submit"] {
+                background-color: #337ab7;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+            button[type="submit"]:hover {
+                background-color: #1063aa;
+            }
+        </style>
+    </head>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#2980B9;color:#EAF2F8">
+  				<div class="container">
+						<img src="https://vtop2.vitap.ac.in/vtop/assets/img/new%20VIT_AP%20logo.png" class="img-responsive pull-left" alt="User Image" width="170" height="50">
+						<h3 class="pull-right" style="color: #fff;font-family:Times; font-size: 24px;">V-Top</h3>
+  				</div>
+			</nav>
+    <body>
+
+        <hr>
+
+        <form action="/attendance" method="POST" id="attn-form">
+            <label for="selected_date">Select Date: </label>
+            <input type="date" id="selected_date" name="selected_date" required value="{{ selected_date }}">
+            <button type="submit" class="btn btn-outline-success">Show attendance</button>
+        </form>
+
+    <div class="container mt-5">
+        {% if no_data %}
+        <div class="alert alert-warning" role="alert">
+            No attendance data available for the selected date.
+        </div>
+
+        {% endif %}
+
+        <h2>Student Attendance Details</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Time</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for name, time in attendance_data %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ time }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
